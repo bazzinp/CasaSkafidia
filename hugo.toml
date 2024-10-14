@@ -1,0 +1,32 @@
+baseURL = 'https://www.casaskafidia.org/'
+languageCode = 'en-us'
+theme = "ananke"
+title = 'Casa Skafidia Web Site'
+
+[params]
+  description = "A cozy room available for rent."
+  author = "Your Name"
+  subtitle = 'The Best Widgets on Earth'
+  [params.contact]
+    email = 'info@example.org'
+    phone = '+1 202-555-1212'
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 2
+
+[[menu.main]]
+  name = "Gallery"
+  url = "/gallery/"
+  weight = 3
+
+[[menu.main]]
+  name = "Contact"
+  url = "/contact/"
+  weight = 4
