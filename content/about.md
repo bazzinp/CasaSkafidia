@@ -6,5 +6,6 @@ draft = true
 +++
 
 Welcome to the room for rent. Here are the details...
+This one is for the second commit
 ![Living Room](images/DJI_0275.jpg)
 ![Bedroom](images/DJI_0277.jpg)
