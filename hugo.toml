@@ -1,4 +1,4 @@
-baseURL = 'https://www.casaskafidia.org/'
+baseURL = 'https://bazzinp.github.io/CasaSkafidia/'
 languageCode = 'en-us'
 theme = "ananke"
 title = 'Casa Skafidia Web Site'
