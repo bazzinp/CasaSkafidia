@@ -1,0 +1,106 @@
+baseURL = "https://casaskafidia.com"
+title = "Casa Skafidia"
+author = "bazz"
+languageCode = "en"
+DefaultContentLanguage = "en"
+enableInlineShortcodes = true
+theme = ["tella", "hugo-shortcode-gallery"]
+enableRobotsTXT = true
+
+# Please enable this feature if the site is available in Japanese, Chinese or Korean.
+#hasCJKLanguage = true
+
+# If you're using Google Analytics, you can enable this feature.
+#googleAnalytics = "UA-12345678-1"
+
+# Disqus Comment System
+#disqusShortname = ""
+
+[params]
+
+  showBlog = false
+  #mainSections = ['blog']
+
+  googleFonts = true
+
+  [params.logo]
+    main = "img/logo/favicon.svg"
+    alt = "Casa Skafidia Logo"
+
+    # The size parameter is the class name of tailwindcss
+    # https://tailwindcss.com/
+    size = "h-10"
+
+  [params.site]
+    name = "Casa Skafidia"
+
+  [params.icon]
+    #If you want to use FontAwesome, set this parameter to true.
+    fontawesome = true
+
+  [params.homepage_meta_tags]
+    meta_description = "Casa Skafidia residence in western Peloponnese"
+    meta_og_title = "Casa Skafidia"
+    meta_og_type = "website"
+    meta_og_url = "https://casaskafidia.com"
+    meta_og_image = "https://raw.githubusercontent.com/opera7133/tella/master/images/tn.png"
+    meta_og_description = "A Hugo Theme for OSSProject, Companies, Organization..."
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[menu]
+
+  [[menu.main]]
+    identifier = "_index"
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "gallery"
+    name = "Gallery"
+    url = "/gallery/"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "activities"
+    name = "Activities"
+    url = "/activities/"
+    weight = 4
+
+  [[menu.main]]
+    identifier = "prices"
+    name = "Prices"
+    url = "/prices/"
+    weight = 5
+
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact/"
+    weight = 6
+
+  # Footer Menu
+  [[menu.footer]]
+    name = "Home"
+    url = "/"
+      weight = 1
+
+  [[menu.footer]]
+    name = "WhatsApp"
+    url = "https://wa.me/0041788227384?text=Hello!%20I%20need%20more%20information%20about%20Casa%20Skafidia"
+    pre = "<i class='fa-brands fa-whatsapp text-3xl' style='color: #63E6BE;'></i>"
+      weight = 2
+  
+  [[menu.footer]]
+    name = "Send E-Mail"
+    url = "mailto:bazzinp@gmail.com"
+    pre = "<i class='fa-regular fa-envelope text-3xl'></i>"
+      weight = 3
