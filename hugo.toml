@@ -15,6 +15,8 @@ enableRobotsTXT = true
 
 [params]
 
+  description = "Vacation residence in western Peloponnese"
+  
   showBlog = false
   # mainSections = ['blog']
 
@@ -36,12 +38,15 @@ enableRobotsTXT = true
     fontawesome = true
 
   [params.homepage_meta_tags]
-    meta_description = "Casa Skafidia residence in western Peloponnese"
+    meta_description = "Vacation residence in western Peloponnese"
     meta_og_title = "Casa Skafidia"
+    meta_og_description = "Vacation residence in western Peloponnese"
     meta_og_type = "website"
     meta_og_url = "https://casaskafidia.com"
-    meta_og_image = "https://raw.githubusercontent.com/opera7133/tella/master/images/tn.png"
-    meta_og_description = "A Hugo Theme for OSSProject, Companies, Organization..."
+    meta_og_image = "https://www.casaskafidia.com/web-app-manifest-512x512.png"
+    meta_twitter_card = "https://www.casaskafidia.com/web-app-manifest-512x512.png"
+    meta_twitter_site = ""
+    meta_twitter_creator = ""
 
 [markup.goldmark.renderer]
   unsafe = true
