@@ -1,7 +1,7 @@
 +++
 title = 'Activities'
 date = 2024-12-07T21:49:56+01:00
-draft = true
+draft = false
 +++
 
 Here is the activities map:
