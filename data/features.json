@@ -1,8 +1,8 @@
 [
   {
-    "title": "Simple",
+    "title": "Parking space",
     "description": "All the bare necessities are there.",
-    "icon": "icon-desktop_windows"
+    "icon": "fa-solid fa-square-parking"
   },
   {
     "title": "Fast",
@@ -13,6 +13,6 @@
     "title": "Whatsapp",
     "description": "Contact us via WhatsApp!",
     "icon": "fa-brands fa-square-whatsapp",
-    "link": "https://wa.me/0041788227384?text=Hello!%20I%20need%20more%20information%20about%20Casa%20Skafidia"
+    "link": "https://wa.me/41788227384?text=Hello!%20I%20need%20more%20information%20about%20Casa%20Skafidia"
   }
 ]
