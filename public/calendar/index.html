@@ -5,7 +5,7 @@
 <script defer src="https://cloud.umami.is/script.js" data-website-id="9a3fd867-56c8-438c-b39d-703a0eb4d660"></script>
 
 <meta charset="utf-8">
-<title>Casa Skafidia | Privacy</title>
+<title>Casa Skafidia | Cal</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="apple-touch-icon" sizes="180x180" href='/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="96x96" href='/favicon-96x96.png'>
@@ -27,18 +27,18 @@
 
 
 <meta property="og:site_name" content="Casa Skafidia" />
-<meta property="og:title" content="Privacy | Casa Skafidia" />
+<meta property="og:title" content="Cal | Casa Skafidia" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://casaskafidia.com/tags/privacy/" />
+<meta property="og:url" content="https://casaskafidia.com/calendar/" />
 <meta name="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="Privacy">
+<meta property="twitter:title" content="Cal">
 
 
 <meta property="og:image" content="https://www.casaskafidia.com/web-app-manifest-512x512.png">
 
-<meta name="description" content="Vacation residence in western Peloponnese" />
-<meta property="og:description" content="Vacation residence in western Peloponnese" />
-<meta property="twitter:description" content="Vacation residence in western Peloponnese" />
+<meta name="description" content="Calendar Snapshot" />
+<meta property="og:description" content="Calendar Snapshot" />
+<meta property="twitter:description" content="Calendar Snapshot" />
 
 
 </head>
@@ -141,31 +141,39 @@
     </div>
 <div class="mx-auto my-10 max-w-6xl">
   <div class="mx-3 col-span-3 lg:col-span-2 px-2">
-    <h1 class="title text-5xl mb-4">Privacy</h1>
-    <div class="content py-1"></div>
-    
-    
-    <a href="https://casaskafidia.com/blog/rich-content/">
-      <div><div
-  class="sans w-full px-2 lg:max-w-full lg:flex mt-3 lg:px-0 duration-500 transform hover:-translate-y-1 hover:shadow-md">
-  
-  <img id="thumb" alt="Rich Content" class="aspect-video object-cover w-auto lg:h-44"
-    src='/img/default.jpg'>
-  
-  <div
-    class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 relative pl-4 p-6 justify-between leading-normal max-w-full w-full">
-    <div class="text-gray-900 font-bold text-xl mb-2">Rich Content</div>
-    <p class="text-gray-700 text-base pb-5">Hugo ships with several Built-in Short...</p>
-    <p class="text-sm text-gray-600 items-center">
-      <time>2019/03/10</time>
-    </p>
-  </div>
-</div></div>
-    </a>
-    
-  </div>
-  
+    <h1 class="title text-5xl mb-4">Cal</h1>
+    <div class="content prose md:prose-lg lg:prose-xl max-w-none py-1"><p>Availability</p>
+<div id="calendar"></div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var icalUrl = 'https:\/\/www.airbnb.ch\/calendar\/ical\/9100496.ics?s=c4ec1809b88fb4e985ccca4e00593f2a';
+
+    fetch(icalUrl)
+      .then(response => response.text())
+      .then(data => {
+        var jcalData = ICAL.parse(data);
+        var comp = new ICAL.Component(jcalData);
+
+        var events = comp.getFirstSubcomponent('vevent');
+
+        var calendarContainer = document.getElementById('calendar');
+        events.forEach(function(event) {
+          var eventTitle = event.getFirstPropertyValue('summary');
+          var eventStart = event.getFirstPropertyValue('dtstart').toString();
+          var eventEnd = event.getFirstPropertyValue('dtend').toString();
+
+          var eventDiv = document.createElement('div');
+          eventDiv.innerHTML = `<strong>${eventTitle}</strong><br>${eventStart} - ${eventEnd}`;
+          calendarContainer.appendChild(eventDiv);
+        });
+      })
+      .catch(error => console.error('Error fetching calendar:', error));
+  });
+</script>
+
+</div>
+  </div>
 </div>
 
   </main><footer class="bg-red-600">
