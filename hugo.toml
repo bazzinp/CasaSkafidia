@@ -97,12 +97,12 @@ enableRobotsTXT = true
 
   [[menu.footer]]
     name = "WhatsApp"
-    url = "https://wa.me/0041788227384?text=Hello!%20I%20need%20more%20information%20about%20Casa%20Skafidia"
+    url = "https://wa.me/+41788227384"
     pre = "<i class='fa-brands fa-whatsapp text-3xl' style='color: #63E6BE;'></i>"
       weight = 2
   
-  [[menu.footer]]
-    name = "Send E-Mail"
-    url = "mailto:bazzinp@gmail.com"
-    pre = "<i class='fa-regular fa-envelope text-3xl'></i>"
-      weight = 3
+#  [[menu.footer]]
+#    name = "Send E-Mail"
+#    url = "mailto:bazzinp@gmail.com"
+#    pre = "<i class='fa-regular fa-envelope text-3xl'></i>"
+#      weight = 3
