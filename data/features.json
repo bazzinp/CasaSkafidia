@@ -1,13 +1,13 @@
 [
   {
-    "title": "Parking space",
-    "description": "All the bare necessities are there.",
-    "icon": "fa-solid fa-square-parking"
+    "title": "Vacations",
+    "description": "Holidays near the beach for couples and families up to 5 people",
+    "icon": "fa-solid fa-house-chimney"
   },
   {
-    "title": "Fast",
-    "description": "Light weight and fast loading speed.",
-    "icon": "icon-lightbulb_outline"
+    "title": "Parking",
+    "description": "Plenty of parking space that can facilitate up to 3 cars, or even your RV.",
+    "icon": "fa-solid fa-square-parking"
   },
   {
     "title": "Whatsapp",
