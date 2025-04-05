@@ -4,6 +4,11 @@ linkTitle: "Cal"
 weight: 150
 description: >-
      Calendar Snapshot
+sitemap:
+  priority: 0.0
+  changefreq: never
+  filename: ""
+  exclude: true
 ---
 Availability
 

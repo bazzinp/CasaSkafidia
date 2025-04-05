@@ -16,7 +16,7 @@ We offer a 33% discount for stays from 28 days and above.
 | Apr - Mai | **91 EUR**        |
 | Jun       | **100 EUR**        |
 | Jul - Aug | **149 EUR**        |
-| Sep | **85 EUR**        |
+| Sep | **100 EUR**        |
 | Okt | **91 EUR**        |
 
 
