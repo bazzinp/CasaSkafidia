@@ -9,13 +9,6 @@
     <lastBuildDate>Sat, 07 Dec 2024 21:49:56 +0100</lastBuildDate>
     <atom:link href="https://casaskafidia.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Cal</title>
-      <link>https://casaskafidia.com/calendar/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://casaskafidia.com/calendar/</guid>
-      <description>&lt;p&gt;Availability&lt;/p&gt;&#xA;&lt;div id=&#34;calendar&#34;&gt;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;script&gt;&#xD;&#xA;  document.addEventListener(&#39;DOMContentLoaded&#39;, function() {&#xD;&#xA;    var icalUrl = &#39;https:\/\/www.airbnb.ch\/calendar\/ical\/9100496.ics?s=c4ec1809b88fb4e985ccca4e00593f2a&#39;;&#xD;&#xA;&#xD;&#xA;    fetch(icalUrl)&#xD;&#xA;      .then(response =&gt; response.text())&#xD;&#xA;      .then(data =&gt; {&#xD;&#xA;        var jcalData = ICAL.parse(data);&#xD;&#xA;        var comp = new ICAL.Component(jcalData);&#xD;&#xA;&#xD;&#xA;        var events = comp.getFirstSubcomponent(&#39;vevent&#39;);&#xD;&#xA;&#xD;&#xA;        var calendarContainer = document.getElementById(&#39;calendar&#39;);&#xD;&#xA;        events.forEach(function(event) {&#xD;&#xA;          var eventTitle = event.getFirstPropertyValue(&#39;summary&#39;);&#xD;&#xA;          var eventStart = event.getFirstPropertyValue(&#39;dtstart&#39;).toString();&#xD;&#xA;          var eventEnd = event.getFirstPropertyValue(&#39;dtend&#39;).toString();&#xD;&#xA;&#xD;&#xA;          var eventDiv = document.createElement(&#39;div&#39;);&#xD;&#xA;          eventDiv.innerHTML = `&lt;strong&gt;${eventTitle}&lt;/strong&gt;&lt;br&gt;${eventStart} - ${eventEnd}`;&#xD;&#xA;          calendarContainer.appendChild(eventDiv);&#xD;&#xA;        });&#xD;&#xA;      })&#xD;&#xA;      .catch(error =&gt; console.error(&#39;Error fetching calendar:&#39;, error));&#xD;&#xA;  });&#xD;&#xA;&lt;/script&gt;</description>
-    </item>
-    <item>
       <title>Activities</title>
       <link>https://casaskafidia.com/activities/</link>
       <pubDate>Sat, 07 Dec 2024 21:49:56 +0100</pubDate>
@@ -34,7 +27,7 @@
       <link>https://casaskafidia.com/about/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       <guid>https://casaskafidia.com/about/</guid>
-      <description>&lt;p&gt;Two-storey house, fully furnished, fully equipped. Ideal for couples and families up to 5 persons. Located in &amp;ldquo;Agios Ilias&amp;rdquo; village near the town of Pyrgos, in Ilia, Peloponnese.&lt;/p&gt;&#xA;&lt;p&gt;You can check the availability of the house on the &lt;a href=&#34;https://www.airbnb.com/rooms/9100496?viralityEntryPoint=1&amp;s=76&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;AirBnb website&lt;/a&gt;. Or you can also contact us directly!&lt;/p&gt;&#xA;&lt;h3 id=&#34;location&#34;&gt;Location&lt;/h3&gt;&#xA;&lt;p&gt;92 km from the port of Patras, 9 km from the town of Pyrgos, 30 km from Ancient Olympia. Within a private orangery area, five hundred metres from the beach, next to the 5-star hotel &amp;ldquo;Aldemar Olympian Village&amp;rdquo;. Completely independent and autonomous from other neighbouring houses. New construction, from 2012. Two large bedrooms, 2 bathrooms, large kitchen - dining - living room, large terraces and gardens. Excellent views to the sea and the nearby hill of Skafidia.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Two-storey house, fully furnished, fully equipped. Ideal for couples and families up to 5 persons. Located in &amp;ldquo;Agios Ilias&amp;rdquo; village near the town of Pyrgos, in Ilia, Peloponnese.&lt;/p&gt;&#xA;&lt;p&gt;You can check the availability of the house on our &lt;a href=&#34;https://casaskafidia.com/calendar/&#34;&gt;calendar&lt;/a&gt;. Or you can also contact us directly!&lt;/p&gt;&#xA;&lt;h3 id=&#34;location&#34;&gt;Location&lt;/h3&gt;&#xA;&lt;p&gt;92 km from the port of Patras, 9 km from the town of Pyrgos, 30 km from Ancient Olympia. Within a private orangery area, five hundred metres from the beach, next to the 5-star hotel &amp;ldquo;Aldemar Olympian Village&amp;rdquo;. Completely independent and autonomous from other neighbouring houses. New construction, from 2012. Two large bedrooms, 2 bathrooms, large kitchen - dining - living room, large terraces and gardens. Excellent views to the sea and the nearby hill of Skafidia.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Prices</title>
@@ -42,6 +35,13 @@
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       <guid>https://casaskafidia.com/prices/</guid>
       <description>&lt;h2 id=&#34;rates&#34;&gt;Rates&lt;/h2&gt;&#xA;&lt;p&gt;We offer a 33% discount for stays from 28 days and above.&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;Month&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;Price per day&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;Nov - Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;85 EUR&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;Apr - Mai&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;99 EUR&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;Jun&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;119 EUR&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;Jul - Aug&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;149 EUR&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;Sep&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;100 EUR&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;Okt&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;91 EUR&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;</description>
+    </item>
+    <item>
+      <title>Availability Calendar</title>
+      <link>https://casaskafidia.com/calendar/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://casaskafidia.com/calendar/</guid>
+      <description></description>
     </item>
     <item>
       <title>Contact</title>

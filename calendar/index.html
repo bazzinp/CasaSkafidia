@@ -5,7 +5,7 @@
 <script defer src="https://cloud.umami.is/script.js" data-website-id="9a3fd867-56c8-438c-b39d-703a0eb4d660"></script>
 
 <meta charset="utf-8">
-<title>Casa Skafidia | Cal</title>
+<title>Casa Skafidia | Availability Calendar</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="apple-touch-icon" sizes="180x180" href='/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="96x96" href='/favicon-96x96.png'>
@@ -24,22 +24,6 @@
 <link href='/css/style.min.css' rel="stylesheet" type="text/css">
 <link rel="stylesheet" href='/css/custom.css'>
 <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/dist/ical.min.js"></script>
-
-
-<meta property="og:site_name" content="Casa Skafidia" />
-<meta property="og:title" content="Cal | Casa Skafidia" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://casaskafidia.com/calendar/" />
-<meta name="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="Cal">
-
-
-<meta property="og:image" content="https://www.casaskafidia.com/web-app-manifest-512x512.png">
-
-<meta name="description" content="Calendar Snapshot" />
-<meta property="og:description" content="Calendar Snapshot" />
-<meta property="twitter:description" content="Calendar Snapshot" />
-
 
 </head>
 
@@ -69,6 +53,12 @@
             <li class="p-2">
                 <a href="/activities/">
                     <span>Activities</span>
+                </a>
+            </li>
+            
+            <li class="p-2">
+                <a href="/calendar/">
+                    <span>Calendar</span>
                 </a>
             </li>
             
@@ -123,6 +113,11 @@
                     Activities
                 </a>
                 
+                <a href="/calendar/"
+                    class="duration-200 block mt-4 lg:inline-block lg:mt-0 text-black hover:opacity-60 mr-8">
+                    Calendar
+                </a>
+                
                 <a href="/prices/"
                     class="duration-200 block mt-4 lg:inline-block lg:mt-0 text-black hover:opacity-60 mr-8">
                     Prices
@@ -139,42 +134,307 @@
 </header><div class="scroll-top rounded-full">
       <span class="icon-keyboard_arrow_up text-2xl"></span>
     </div>
-<div class="mx-auto my-10 max-w-6xl">
-  <div class="mx-3 col-span-3 lg:col-span-2 px-2">
-    <h1 class="title text-5xl mb-4">Cal</h1>
-    <div class="content prose md:prose-lg lg:prose-xl max-w-none py-1"><p>Availability</p>
-<div id="calendar"></div>
+<div class="max-w-5xl mx-auto px-4 py-12">
+
+  <style>
+    :root {
+      --cal-reserved:    #b85c38;
+      --cal-unavailable: #7a9e87;
+      --cal-free-bg:     #f3f4f6;
+      --cal-free-border: #d1d5db;
+      --cal-ink:         #1a1410;
+      --cal-stone:       #9ca3af;
+      --cal-card-bg:     #ffffff;
+    }
+
+    .cal-section-title {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .cal-subtitle {
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cal-stone);
+      margin-bottom: 2.5rem;
+    }
+
+    .cal-legend {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .cal-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cal-ink);
+    }
+    .cal-legend-dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cal-legend-dot.reserved    { background: var(--cal-reserved); }
+    .cal-legend-dot.unavailable { background: var(--cal-unavailable); }
+    .cal-legend-dot.free        { background: var(--cal-free-bg); border: 1px solid var(--cal-free-border); }
+
+    #cal-status {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--cal-stone);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      min-height: 1.2rem;
+    }
+
+    .cal-months-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .cal-month-card {
+      background: var(--cal-card-bg);
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1.1rem;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+      animation: calFadeUp 0.35s ease both;
+    }
+    @keyframes calFadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .cal-month-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cal-ink);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .cal-weekday-row,
+    .cal-days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+    .cal-weekday-row { margin-bottom: 3px; }
+
+    .cal-weekday-label {
+      text-align: center;
+      font-size: 0.58rem;
+      letter-spacing: 0.06em;
+      color: var(--cal-stone);
+      text-transform: uppercase;
+      padding: 2px 0;
+    }
+
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      border-radius: 3px;
+      position: relative;
+      cursor: default;
+      transition: transform 0.1s;
+      user-select: none;
+    }
+    .cal-day.empty       { background: transparent; }
+    .cal-day.free        { background: var(--cal-free-bg); color: var(--cal-ink); border: 1px solid var(--cal-free-border); }
+    .cal-day.reserved    { background: var(--cal-reserved); color: #fff; }
+    .cal-day.unavailable { background: var(--cal-unavailable); color: #fff; }
+    .cal-day.today       { outline: 2px solid var(--cal-ink); outline-offset: -2px; font-weight: 700; }
+    .cal-day.past        { opacity: 0.35; }
+    .cal-day:not(.empty):hover { transform: scale(1.18); z-index: 2; }
+
+    .cal-day[data-tip]:not(.empty):hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 5px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1410;
+      color: #f5f0e8;
+      font-size: 0.58rem;
+      white-space: nowrap;
+      padding: 3px 6px;
+      border-radius: 3px;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .cal-sync-note {
+      text-align: center;
+      font-size: 0.65rem;
+      color: var(--cal-stone);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 2rem;
+    }
+
+    .cal-error {
+      text-align: center;
+      color: var(--cal-reserved);
+      font-size: 0.8rem;
+      padding: 1.5rem;
+      border: 1px solid var(--cal-reserved);
+      border-radius: 6px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  </style>
+
+  <h1 class="cal-section-title">Availability</h1>
+  <p class="cal-subtitle">Live calendar · Synced from Airbnb</p>
+
+  <div class="cal-legend">
+    <div class="cal-legend-item"><div class="cal-legend-dot free"></div> Available</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot reserved"></div> Reserved</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot unavailable"></div> Not available</div>
+  </div>
+
+  <div id="cal-status">Loading calendar…</div>
+  <div class="cal-months-grid" id="cal-months-grid"></div>
+  <p class="cal-sync-note" id="cal-sync-note"></p>
+
+</div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var icalUrl = 'https:\/\/www.airbnb.ch\/calendar\/ical\/9100496.ics?s=c4ec1809b88fb4e985ccca4e00593f2a';
+(async () => {
+  const ICAL_URL = 'https://www.airbnb.ch/calendar/ical/9100496.ics?s=c4ec1809b88fb4e985ccca4e00593f2a';
+  const PROXY    = 'https://corsproxy.io/?' + encodeURIComponent(ICAL_URL);
 
-    fetch(icalUrl)
-      .then(response => response.text())
-      .then(data => {
-        var jcalData = ICAL.parse(data);
-        var comp = new ICAL.Component(jcalData);
+  const statusEl = document.getElementById('cal-status');
+  const gridEl   = document.getElementById('cal-months-grid');
+  const syncEl   = document.getElementById('cal-sync-note');
 
-        var events = comp.getFirstSubcomponent('vevent');
+  function parseIcalDate(s) {
+    return new Date(+s.slice(0,4), +s.slice(4,6) - 1, +s.slice(6,8));
+  }
 
-        var calendarContainer = document.getElementById('calendar');
-        events.forEach(function(event) {
-          var eventTitle = event.getFirstPropertyValue('summary');
-          var eventStart = event.getFirstPropertyValue('dtstart').toString();
-          var eventEnd = event.getFirstPropertyValue('dtend').toString();
+  function parseIcal(text) {
+    const events = [];
+    const blocks = text.split('BEGIN:VEVENT');
+    blocks.shift();
+    for (const block of blocks) {
+      const summary = (block.match(/SUMMARY:(.+)/)?.[1] || '').trim();
+      const dtstart = block.match(/DTSTART[^:]*:(\d{8})/)?.[1];
+      const dtend   = block.match(/DTEND[^:]*:(\d{8})/)?.[1];
+      if (!dtstart || !dtend) continue;
+      const isReserved = summary.toLowerCase().includes('reserved');
+      events.push({
+        start: parseIcalDate(dtstart),
+        end:   parseIcalDate(dtend), 
+        type:  isReserved ? 'reserved' : 'unavailable',
+        tip:   isReserved ? 'Reserved' : 'Not available'
+      });
+    }
+    return events;
+  }
 
-          var eventDiv = document.createElement('div');
-          eventDiv.innerHTML = `<strong>${eventTitle}</strong><br>${eventStart} - ${eventEnd}`;
-          calendarContainer.appendChild(eventDiv);
-        });
-      })
-      .catch(error => console.error('Error fetching calendar:', error));
-  });
+  function statusForDate(d, events) {
+    for (const ev of events) {
+      if (d >= ev.start && d < ev.end) return { cls: ev.type, tip: ev.tip };
+    }
+    return { cls: 'free', tip: 'Available' };
+  }
+
+  function renderMonth(year, month, events, today) {
+    const WEEKDAYS   = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+    const MONTH_NAMES = ['January','February','March','April','May','June',
+                         'July','August','September','October','November','December'];
+
+    const card = document.createElement('div');
+    card.className = 'cal-month-card';
+    card.style.animationDelay = (month % 4) * 0.06 + 's';
+
+    const title = document.createElement('div');
+    title.className = 'cal-month-title';
+    title.textContent = `${MONTH_NAMES[month]} ${year}`;
+    card.appendChild(title);
+
+    
+    const wRow = document.createElement('div');
+    wRow.className = 'cal-weekday-row';
+    WEEKDAYS.forEach(d => {
+      const lbl = document.createElement('div');
+      lbl.className = 'cal-weekday-label';
+      lbl.textContent = d;
+      wRow.appendChild(lbl);
+    });
+    card.appendChild(wRow);
+
+    
+    const dGrid = document.createElement('div');
+    dGrid.className = 'cal-days-grid';
+
+    const firstDow = (new Date(year, month, 1).getDay() + 6) % 7; 
+    for (let i = 0; i < firstDow; i++) {
+      const e = document.createElement('div');
+      e.className = 'cal-day empty';
+      dGrid.appendChild(e);
+    }
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(year, month, d);
+      const { cls, tip } = statusForDate(date, events);
+      const cell = document.createElement('div');
+      cell.className = 'cal-day ' + cls;
+      if (date < today) cell.classList.add('past');
+      if (date.toDateString() === today.toDateString()) cell.classList.add('today');
+      cell.textContent = d;
+      cell.setAttribute('data-tip', tip);
+      dGrid.appendChild(cell);
+    }
+
+    card.appendChild(dGrid);
+    return card;
+  }
+
+  try {
+    const resp = await fetch(PROXY);
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const text = await resp.text();
+    const events = parseIcal(text);
+
+    statusEl.textContent = '';
+    syncEl.textContent = 'Last synced: ' + new Date().toLocaleString();
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    for (let i = 0; i < 12; i++) {
+      const d = new Date(today.getFullYear(), today.getMonth() + i, 1);
+      gridEl.appendChild(renderMonth(d.getFullYear(), d.getMonth(), events, today));
+    }
+  } catch (err) {
+    statusEl.textContent = '';
+    gridEl.innerHTML = `<div class="cal-error">
+      Could not load calendar — please refresh the page.<br>
+      <small style="opacity:.6">${err.message}</small>
+    </div>`;
+    console.error('Calendar error:', err);
+  }
+})();
 </script>
-
-</div>
-  </div>
-</div>
 
   </main><footer class="bg-red-600">
   
