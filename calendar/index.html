@@ -57,6 +57,12 @@
             </li>
             
             <li class="p-2">
+                <a href="/calendar/">
+                    <span>Calendar</span>
+                </a>
+            </li>
+            
+            <li class="p-2">
                 <a href="/prices/">
                     <span>Prices</span>
                 </a>
@@ -105,6 +111,11 @@
                 <a href="/activities/"
                     class="duration-200 block mt-4 lg:inline-block lg:mt-0 text-black hover:opacity-60 mr-8">
                     Activities
+                </a>
+                
+                <a href="/calendar/"
+                    class="duration-200 block mt-4 lg:inline-block lg:mt-0 text-black hover:opacity-60 mr-8">
+                    Calendar
                 </a>
                 
                 <a href="/prices/"
@@ -308,7 +319,7 @@
 <script>
 (async () => {
   const ICAL_URL = 'https://www.airbnb.ch/calendar/ical/9100496.ics?s=c4ec1809b88fb4e985ccca4e00593f2a';
-  const PROXY    = 'https://corsproxy.io/?' + encodeURIComponent(ICAL_URL);
+  const resp = await fetch('/calendar.ics');
 
   const statusEl = document.getElementById('cal-status');
   const gridEl   = document.getElementById('cal-months-grid');
@@ -399,7 +410,7 @@
   }
 
   try {
-    const resp = await fetch(PROXY);
+    const resp = await fetch('/calendar.ics');
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     const text = await resp.text();
     const events = parseIcal(text);
