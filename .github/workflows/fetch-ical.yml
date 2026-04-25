@@ -1,0 +1,36 @@
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v4
+        with:
+          submodules: true  # needed for your themes
+
+      - name: Fetch Airbnb iCal
+        run: |
+          curl -L "https://www.airbnb.ch/calendar/ical/9100496.ics?s=c4ec1809b88fb4e985ccca4e00593f2a" \
+            -o static/calendar.ics
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build site
+        run: hugo --minify
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages

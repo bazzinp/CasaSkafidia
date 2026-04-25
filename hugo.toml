@@ -78,6 +78,12 @@ enableRobotsTXT = false
     weight = 4
 
   [[menu.main]]
+    identifier = "calendar"
+    name = "Calendar"
+    url = "/calendar/"
+    weight = 5
+  
+  [[menu.main]]
     identifier = "prices"
     name = "Prices"
     url = "/prices/"
