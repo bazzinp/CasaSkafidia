@@ -33,7 +33,7 @@ jobs:
             -o static/calendar.ics
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
           # v0.122.0 is the last version that supports your gallery theme's use of .Meta
           hugo-version: '0.122.0'
