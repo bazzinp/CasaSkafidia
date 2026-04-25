@@ -25,11 +25,20 @@ jobs:
           hugo-version: '0.122.0'
           extended: true
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Or your preferred version
+          cache: 'npm'
+
       - name: Install Node dependencies
         run: npm install
     
+      - name: Fix PostCSS permissions
+        run: chmod +x node_modules/.bin/postcss
+        
       - name: Build site
-        run: hugo --minify --verbose --debug
+        run: hugo --minify
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
