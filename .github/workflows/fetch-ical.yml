@@ -12,33 +12,35 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@v4
         with:
-          submodules: true  # needed for your themes
+          submodules: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        # This installs PostCSS and ensures binaries are executable
+        run: npm install
 
       - name: Fetch Airbnb iCal
         run: |
+          mkdir -p static
           curl -L "https://www.airbnb.ch/calendar/ical/9100496.ics?s=c4ec1809b88fb4e985ccca4e00593f2a" \
             -o static/calendar.ics
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
+          # v0.122.0 is the last version that supports your gallery theme's use of .Meta
           hugo-version: '0.122.0'
           extended: true
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20' # Or your preferred version
-          cache: 'npm'
-
-      - name: Install Node dependencies
-        run: npm install
-    
-      - name: Fix PostCSS permissions
-        run: chmod +x node_modules/.bin/postcss
-        
       - name: Build site
-        run: hugo --minify
+        # We add the node_modules bin to the path just in case Hugo is picky
+        run: |
+          export PATH=$PATH:$(pwd)/node_modules/.bin
+          hugo --minify
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
