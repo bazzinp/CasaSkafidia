@@ -21,7 +21,10 @@ jobs:
 
       - name: Install dependencies
         # This installs PostCSS and ensures binaries are executable
-        run: npm install
+        run: |
+          npm install
+          chmod -R +x node_modules/.bin
+
 
       - name: Fetch Airbnb iCal
         run: |
